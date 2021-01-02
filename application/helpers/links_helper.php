@@ -33,3 +33,23 @@ function itunes_subscribe_link()
 	//itpc://librivox.org/rss/6792
 
 }
+
+function http_to_https($url)
+{
+	/* Some URLs are stored in the database as http. But when they are used
+	   for things like <img> this can cause the web browser to give scary
+	   warnings about mixed encrypted/un-encrypted content. But simply upgrading
+	   all URLs to https could cause an issue if it is a link to a server that
+	   does not support https. So this function only upgrades URLs for a
+	   specific list of host names. */
+
+	// test for http and extract host name
+	if (preg_match('!^http://([^/]*)!', $url, $match))
+	{
+		// test for host names we want to upgrade to https
+		if (preg_match('/(archive.org)/', $match[1]))
+			return 'https' . substr($url, 4);
+	}
+
+	return $url;
+}

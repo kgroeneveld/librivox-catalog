@@ -87,6 +87,7 @@ class Feed extends REST_Controller
 	public function lastest_releases_get()
 	{
 		$this->load->model('project_model');
+		$this->load->helper('links_helper');
 		$projects = $this->project_model->get_lastest_releases(10);
 
 		if ($projects)
@@ -94,6 +95,7 @@ class Feed extends REST_Controller
 			foreach ($projects as $key => $project)
 			{
 				$projects[$key]->authors = $this->project_model->get_project_authors($project->id);
+				$projects[$key]->coverart_thumbnail = http_to_https($projects[$key]->coverart_thumbnail);
 			}
 			$this->response($projects, 200); // 200 being the HTTP response code
 		}

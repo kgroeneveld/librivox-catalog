@@ -10,7 +10,7 @@
 			if (empty($item['coverart_thumbnail']))
 				$image = base_url() . 'images/book-cover-default-65x65.gif';
 			else
-				$image = $item['coverart_thumbnail'];
+				$image = http_to_https($item['coverart_thumbnail']);
 
 			$url = $item['url_librivox'];
 		}

@@ -11,7 +11,7 @@
 
 			<div class="content-wrap clearfix">
 				<div class="book-page-book-cover">
-					<img src="<?= is_empty($project->coverart_jpg, base_url() . 'images/book-cover-150x150.gif') ?>" alt="book-cover-large" width="175" height="175" />
+					<img src="<?= is_empty(http_to_https($project->coverart_jpg), base_url() . 'images/book-cover-150x150.gif') ?>" alt="book-cover-large" width="175" height="175" />
 
 					<?php if (!empty($project->coverart_jpg)): ?>
 					<a href="<?= $project->coverart_jpg ?>" class="download-cover">Download cover art</a>
